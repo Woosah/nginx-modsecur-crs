@@ -27,7 +27,7 @@ RUN git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx.git && \
     ./configure --with-compat --add-dynamic-module=../ModSecurity-nginx && \
     make modules && \
     mkdir /etc/nginx/modules && \
-    cp /nginx-${NGINX_VERSION}/objs/ngx_http_modsecurity_module.so /etc/nginx/modules/ngx_http_modsecurity_module.so
+    cp /nginx-${NGINX_VERSION}/objs/ngx_http_modsecurity_module.so /etc/nginx/modules/ngx_http_modsecurity_module.so && \
     echo "load_module modules/ngx_http_modsecurity_module.so;" >> /etc/nginx/nginx.conf && \
     cd / && \
     mkdir /etc/nginx/modsec && \
