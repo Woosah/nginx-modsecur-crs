@@ -1,6 +1,6 @@
-FROM nginx:stable
+FROM nginx:latest
 
-MAINTAINER Brendan Beveridge <brendan@nodeintegration.com.au>
+MAINTAINER Woosah <post@woosah.info>
 
 ENV MODSECURITY_VERSION 2.9.0
 
