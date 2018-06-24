@@ -27,7 +27,7 @@ RUN git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx.git && \
     ./configure --with-compat --add-dynamic-module=../ModSecurity-nginx && \
     make modules 
 
-RUN cp objs/ngx_http_modsecurity_module.so /etc/nginx/modules
+# RUN cp objs/ngx_http_modsecurity_module.so /etc/nginx/modules
     
 # RUN echo "SecRuleEngine On" >> modsecurity.conf
 
