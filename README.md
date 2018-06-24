@@ -1,7 +1,7 @@
 # nginx-modsecurity
 ## Description
-This docker image is vanilla nginx from upstream latest with modsecurity and OWASP3 rules.
+This docker image is build on ubuntu 18.04 bionic, with a nginx 1.15.0 which has modsecurity v3 and OWASP3 rules installed.
 
-forked from nodeintegration/nginx-modsecurity and newly build with nginx latest instead of stable
+Originally forked from nodeintegration/nginx-modsecurity, but after the automated build failed updated from scratch...
 
 
