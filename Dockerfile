@@ -4,10 +4,11 @@ MAINTAINER Woosah <post@woosah.info>
 
 ENV MODSECURITY_VERSION 3.0.0
 
-RUN wget "https://nginx.org/keys/nginx_signing.key" && apt-key add nginx_signing.key && \
+RUN apt-get update -y && apt-get upgrade -y && apt-get install wget && \
+    wget "https://nginx.org/keys/nginx_signing.key" && apt-key add nginx_signing.key && \
     echo "deb http://nginx.org/packages/debian/ bionic nginx" >> /etc/apt/sources.list && \
     echo "deb-src http://nginx.org/packages/debian/ bionic nginx" >> /etc/apt/sources.list && \
-    apt-get update -y && apt-get upgrade -y && apt-get install -y nginx && \
+    apt-get install -y nginx && \
     apt-get install -y apt-utils autoconf automake build-essential git libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre++-dev libtool libxml2-dev libyajl-dev pkgconf wget zlib1g-dev
     
 RUN git clone --depth 1 -b v3/master --single-branch https://github.com/SpiderLabs/ModSecurity && \
