@@ -4,7 +4,7 @@ MAINTAINER Woosah <post@woosah.info>
 
 ENV MODSECURITY_VERSION 3.0.0
 
-RUN apt-get update -y && apt-get upgrade -y && apt-get dist-upgrade -y && apt-get install -y wget && \
+RUN apt-get update -y && apt-get upgrade -y && apt-get dist-upgrade -y && apt-get install -y wget gnupg && \
     wget "https://nginx.org/keys/nginx_signing.key" && apt-key add nginx_signing.key && \
     echo "deb http://nginx.org/packages/debian/ bionic nginx" >> /etc/apt/sources.list && \
     echo "deb-src http://nginx.org/packages/debian/ bionic nginx" >> /etc/apt/sources.list && \
