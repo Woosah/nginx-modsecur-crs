@@ -23,10 +23,11 @@ RUN git clone --depth 1 -b v3/master --single-branch https://github.com/SpiderLa
 RUN git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx.git && \
     wget http://nginx.org/download/nginx-1.15.0.tar.gz && \
     tar zxvf nginx-1.15.0.tar.gz && \
-    cd nginx-1.13.1 && \
+    cd nginx-1.15.0 && \
     ./configure --with-compat --add-dynamic-module=../ModSecurity-nginx && \
-    make modules && \
-    cp objs/ngx_http_modsecurity_module.so /etc/nginx/modules
+    make modules 
+
+RUN cp objs/ngx_http_modsecurity_module.so /etc/nginx/modules
     
 # RUN echo "SecRuleEngine On" >> modsecurity.conf
 
