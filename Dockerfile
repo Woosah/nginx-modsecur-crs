@@ -1,27 +1,40 @@
-FROM nginx:latest
+FROM ubuntu:latest
 
 MAINTAINER Woosah <post@woosah.info>
 
-ENV MODSECURITY_VERSION 2.9.0
+ENV MODSECURITY_VERSION 3.0.0
 
-RUN cd /opt && \
-    echo "deb-src http://nginx.org/packages/debian/ jessie nginx" >> /etc/apt/sources.list && \
-    apt-get update && \
-    apt-get install -qy git wget dpkg-dev apache2-dev libpcre3-dev libxml2-dev && \
-    apt-get source nginx && \
-    apt-get -qy build-dep nginx && \
-\
-    wget -O /opt/modsecurity-${MODSECURITY_VERSION}.tar.gz https://www.modsecurity.org/tarball/2.9.0/modsecurity-${MODSECURITY_VERSION}.tar.gz && \
-    cd /opt && tar -zxvf modsecurity-${MODSECURITY_VERSION}.tar.gz && \
-\
-    cd /opt/modsecurity-${MODSECURITY_VERSION} && \
-    ./configure --enable-standalone-module --disable-mlogc && \
+RUN wget "https://nginx.org/keys/nginx_signing.key" && apt-key add nginx_signing.key && \
+    echo "deb http://nginx.org/packages/debian/ bionic nginx" >> /etc/apt/sources.list && \
+    echo "deb-src http://nginx.org/packages/debian/ bionic nginx" >> /etc/apt/sources.list && \
+    apt-get update -y && apt-get upgrade -y && apt-get install -y nginx && \
+    apt-get install -y apt-utils autoconf automake build-essential git libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre++-dev libtool libxml2-dev libyajl-dev pkgconf wget zlib1g-dev
+    
+RUN git clone --depth 1 -b v3/master --single-branch https://github.com/SpiderLabs/ModSecurity && \
+    cd ModSecurity && \
+    git submodule init && \
+    git submodule update && \
+    ./build.sh && \
+    ./configure && \
     make && \
-\
-    cd /opt/nginx-* && \
-    sed -i -e 's%\./configure%./configure --add-module=/opt/modsecurity-${MODSECURITY_VERSION}/nginx/modsecurity --with-http_stub_status_module%' debian/rules && \
-    dpkg-buildpackage -b && \
-    dpkg -i /opt/nginx_*.deb && \
+    make install && cd ../ 
+
+RUN git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx.git && \
+    wget http://nginx.org/download/nginx-1.15.0.tar.gz && \
+    tar zxvf nginx-1.15.0.tar.gz && \
+    cd nginx-1.13.1 && \
+    ./configure --with-compat --add-dynamic-module=../ModSecurity-nginx && \
+    make modules && \
+    cp objs/ngx_http_modsecurity_module.so /etc/nginx/modules
+    
+RUN 
+    
+    
+    
+    
+     
+    
+
 \
     cp /opt/modsecurity-${MODSECURITY_VERSION}/modsecurity.conf-recommended /etc/nginx/modsecurity.conf && \
     cp /opt/modsecurity-${MODSECURITY_VERSION}/unicode.mapping /etc/nginx/ && \
@@ -46,6 +59,13 @@ RUN mkdir /etc/nginx/modsecurity-data && \
     #echo 'SecDefaultAction "phase:1,deny,log"' >> /etc/nginx/modsecurity.conf
     echo "SecDataDir /etc/nginx/modsecurity-data" >> /etc/nginx/modsecurity.conf
 
-#ENTRYPOINT ["/entrypoint.sh"]
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+	&& ln -sf /dev/stderr /var/log/nginx/error.log
+
+EXPOSE 80
+
+STOPSIGNAL SIGTERM
+
 CMD ["nginx", "-g", "daemon off;"]
 
