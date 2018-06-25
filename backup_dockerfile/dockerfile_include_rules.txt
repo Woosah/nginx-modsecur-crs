@@ -1,0 +1,25 @@
+echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-901-INITIALIZATION.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-905-COMMON-EXCEPTIONS.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-910-IP-REPUTATION.conf" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-911-METHOD-ENFORCEMENT.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-912-DOS-PROTECTION.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-913-SCANNER-DETECTION.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-921-PROTOCOL-ATTACK.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-930-APPLICATION-ATTACK-LFI.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-931-APPLICATION-ATTACK-RFI.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-932-APPLICATION-ATTACK-RCE.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-933-APPLICATION-ATTACK-PHP.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-941-APPLICATION-ATTACK-XSS.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-942-APPLICATION-ATTACK-SQLI.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-943-APPLICATION-ATTACK-SESSION-FIXATION.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-949-BLOCKING-EVALUATION.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/RESPONSE-950-DATA-LEAKAGES.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/RESPONSE-951-DATA-LEAKAGES-SQL.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/RESPONSE-952-DATA-LEAKAGES-JAVA.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/RESPONSE-953-DATA-LEAKAGES-PHP.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/RESPONSE-954-DATA-LEAKAGES-IIS.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/RESPONSE-959-BLOCKING-EVALUATION.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/RESPONSE-980-CORRELATION.conf;" >> /etc/nginx/modsec/modsec_includes.conf && \
+    echo "include /etc/nginx/owasp-modsecurity-crs/rules/RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf;" >> /etc/nginx/modsec/modsec_includes.conf
