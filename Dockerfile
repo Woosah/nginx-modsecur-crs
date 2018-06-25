@@ -36,8 +36,8 @@ RUN git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx.git && \
     sed -i 's/SecRuleEngine DetectionOnly/SecRuleEngine On/' /etc/nginx/modsec/modsecurity.conf && \
     sed -i 's/SecRequestBodyLimit 13107200/SecRequestBodyLimit 100000000/' /etc/nginx/modsec/modsecurity.conf && \
     sed -i 's/SecAuditLogType Serial/SecAuditLogType Concurrent/' /etc/nginx/modsec/modsecurity.conf && \
-    sed -i 's/SecAuditLog \/var\/log\/modsec_audit.log/#SecAuditLog \/var\/log\/modsec_audit.log/" /etc/nginx/modsec/modsecurity.conf && \
-    sed -i 's/#SecAuditLogStorageDir \/opt\/modsecurity\/var\/audit\//SecAuditLogStorageDir \/var\/log\/modsec_audit\/" /etc/nginx/modsec/modsecurity.conf && \
+    sed -i 's/SecAuditLog \/var\/log\/modsec_audit.log/#SecAuditLog \/var\/log\/modsec_audit.log/' /etc/nginx/modsec/modsecurity.conf && \
+    sed -i 's/#SecAuditLogStorageDir \/opt\/modsecurity\/var\/audit\//SecAuditLogStorageDir \/var\/log\/modsec_audit\/' /etc/nginx/modsec/modsecurity.conf && \
     cd /
     
 RUN mkdir -p /etc/nginx/owasp-modsecurity-crs && \
