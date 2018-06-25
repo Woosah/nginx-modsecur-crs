@@ -40,8 +40,7 @@ RUN git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx.git && \
     sed -i 's/#SecAuditLogStorageDir \/opt\/modsecurity\/var\/audit\//SecAuditLogStorageDir \/var\/log\/modsec_audit\//' /etc/nginx/modsec/modsecurity.conf && \
     cd /
     
-RUN mkdir -p /etc/nginx/owasp-modsecurity-crs && \
-    git clone https://github.com/SpiderLabs/owasp-modsecurity-crs.git . && \
+RUN git clone https://github.com/SpiderLabs/owasp-modsecurity-crs.git && \
     cd /etc/nginx/owasp-modsecurity-crs && \
     mv /etc/nginx/owasp-modsecurity-crs/crs-setup.conf.example /etc/nginx/owasp-modsecurity-crs/crs-setup.conf && \
     mv /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf.example /etc/nginx/owasp-modsecurity-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf && \
