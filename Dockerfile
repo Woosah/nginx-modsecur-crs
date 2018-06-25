@@ -54,6 +54,7 @@ RUN cd /etc/nginx/ && \
     
 
 RUN apt-get remove -qy --purge git wget gnupg apt-utils autoconf automake build-essential libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre++-dev libtool libxml2-dev libyajl-dev pkgconf zlib1g-dev && \
+    apt-get -y autoremove && \
     apt-get purge -y --auto-remove 
     
 RUN rm /nginx-${NGINX_VERSION}.tar.gz && \
